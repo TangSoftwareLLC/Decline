@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Outlook Calendar Week View - Breakout Game Background</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="calendar-container">
+        <!-- Week Range -->
+        <div class="week-range">
+            <div class="week-range-text" id="weekRange">Loading...</div>
+        </div>
+
+        <!-- Day Headers with All Day Section -->
+        <div class="day-headers">
+            <div class="day-headers-spacer">
+                <div class="spacer-label timezone-label">PDT</div>
+                <div class="spacer-label all-day-label">All day</div>
+            </div>
+            <div class="day-header">
+                <div class="day-name">SUN</div>
+                <div class="day-number" id="sunDate"></div>
+                <div class="all-day-cell"></div>
+            </div>
+            <div class="day-header">
+                <div class="day-name">MON</div>
+                <div class="day-number" id="monDate"></div>
+                <div class="all-day-cell"></div>
+            </div>
+            <div class="day-header">
+                <div class="day-name">TUE</div>
+                <div class="day-number" id="tueDate"></div>
+                <div class="all-day-cell"></div>
+            </div>
+            <div class="day-header">
+                <div class="day-name">WED</div>
+                <div class="day-number" id="wedDate"></div>
+                <div class="all-day-cell"></div>
+            </div>
+            <div class="day-header">
+                <div class="day-name">THU</div>
+                <div class="day-number" id="thuDate"></div>
+                <div class="all-day-cell"></div>
+            </div>
+            <div class="day-header">
+                <div class="day-name">FRI</div>
+                <div class="day-number" id="friDate"></div>
+                <div class="all-day-cell"></div>
+            </div>
+            <div class="day-header">
+                <div class="day-name">SAT</div>
+                <div class="day-number" id="satDate"></div>
+                <div class="all-day-cell"></div>
+            </div>
+        </div>
+
+        <!-- Time Grid -->
+        <div class="time-grid">
+            <!-- Time Labels Column -->
+            <div class="time-labels">
+                <div class="time-label-spacer-top"></div>
+                <div class="time-label">8 AM</div>
+                <div class="time-label"></div>
+                <div class="time-label">9 AM</div>
+                <div class="time-label"></div>
+                <div class="time-label">10 AM</div>
+                <div class="time-label"></div>
+                <div class="time-label">11 AM</div>
+                <div class="time-label"></div>
+                <div class="time-label">12 PM</div>
+                <div class="time-label"></div>
+                <div class="time-label">1 PM</div>
+                <div class="time-label"></div>
+                <div class="time-label">2 PM</div>
+                <div class="time-label"></div>
+                <div class="time-label">3 PM</div>
+                <div class="time-label"></div>
+                <div class="time-label">4 PM</div>
+                <div class="time-label"></div>
+                <div class="time-label">5 PM</div>
+                <div class="time-label"></div>
+                <div class="time-label">6 PM</div>
+            </div>
+
+            <!-- Calendar Grid -->
+            <div class="calendar-grid">
+                <!-- Sunday Column -->
+                <div class="day-column">
+                    <div class="time-slot solid-line"></div>
+                    <div class="time-slot dotted-line"></div>
+                    <div class="time-slot solid-line"></div>
+                    <div class="time-slot dotted-line"></div>
+                    <div class="time-slot solid-line"></div>
+                    <div class="time-slot dotted-line"></div>
+                    <div class="time-slot solid-line"></div>
+                    <div class="time-slot dotted-line"></div>
+                    <div class="time-slot solid-line"></div>
+                    <div class="time-slot dotted-line"></div>
+                    <div class="time-slot solid-line"></div>
+                    <div class="time-slot dotted-line"></div>
+                    <div class="time-slot solid-line"></div>
+                    <div class="time-slot dotted-line"></div>
+                    <div class="time-slot solid-line"></div>
+                    <div class="time-slot dotted-line"></div>
+                    <div class="time-slot solid-line"></div>
+                    <div class="time-slot dotted-line"></div>
+                    <div class="time-slot solid-line"></div>
+                    <div class="time-slot dotted-line"></div>
+                    <div class="time-slot solid-line"></div>
+                </div>
+
+                <!-- Monday Column -->
+                <div class="day-column">
+                    <div class="time-slot solid-line"></div>
+                    <div class="time-slot dotted-line"></div>
+                    <div class="time-slot solid-line"></div>
+                    <div class="time-slot dotted-line"></div>
+                    <div class="time-slot solid-line"></div>
+                    <div class="time-slot dotted-line"></div>
+                    <div class="time-slot solid-line"></div>
+                    <div class="time-slot dotted-line"></div>
+                    <div class="time-slot solid-line"></div>
+                    <div class="time-slot dotted-line"></div>
+                    <div class="time-slot solid-line"></div>
+                    <div class="time-slot dotted-line"></div>
+                    <div class="time-slot solid-line"></div>
+                    <div class="time-slot dotted-line"></div>
+                    <div class="time-slot solid-line"></div>
+                    <div class="time-slot dotted-line"></div>
+                    <div class="time-slot solid-line"></div>
+                    <div class="time-slot dotted-line"></div>
+                    <div class="time-slot solid-line"></div>
+                    <div class="time-slot dotted-line"></div>
+                    <div class="time-slot solid-line"></div>
+                </div>
+
+                <!-- Tuesday Column -->
+                <div class="day-column">
+                    <div class="time-slot solid-line"></div>
+                    <div class="time-slot dotted-line"></div>
+                    <div class="time-slot solid-line"></div>
+                    <div class="time-slot dotted-line"></div>
+                    <div class="time-slot solid-line"></div>
+                    <div class="time-slot dotted-line"></div>
+                    <div class="time-slot solid-line"></div>
+                    <div class="time-slot dotted-line"></div>
+                    <div class="time-slot solid-line"></div>
+                    <div class="time-slot dotted-line"></div>
+                    <div class="time-slot solid-line"></div>
+                    <div class="time-slot dotted-line"></div>
+                    <div class="time-slot solid-line"></div>
+                    <div class="time-slot dotted-line"></div>
+                    <div class="time-slot solid-line"></div>
+                    <div class="time-slot dotted-line"></div>
+                    <div class="time-slot solid-line"></div>
+                    <div class="time-slot dotted-line"></div>
+                    <div class="time-slot solid-line"></div>
+                    <div class="time-slot dotted-line"></div>
+                    <div class="time-slot solid-line"></div>
+                </div>
+
+                <!-- Wednesday Column -->
+                <div class="day-column">
+                    <div class="time-slot solid-line"></div>
+                    <div class="time-slot dotted-line"></div>
+                    <div class="time-slot solid-line"></div>
+                    <div class="time-slot dotted-line"></div>
+                    <div class="time-slot solid-line"></div>
+                    <div class="time-slot dotted-line"></div>
+                    <div class="time-slot solid-line"></div>
+                    <div class="time-slot dotted-line"></div>
+                    <div class="time-slot solid-line"></div>
+                    <div class="time-slot dotted-line"></div>
+                    <div class="time-slot solid-line"></div>
+                    <div class="time-slot dotted-line"></div>
+                    <div class="time-slot solid-line"></div>
+                    <div class="time-slot dotted-line"></div>
+                    <div class="time-slot solid-line"></div>
+                    <div class="time-slot dotted-line"></div>
+                    <div class="time-slot solid-line"></div>
+                    <div class="time-slot dotted-line"></div>
+                    <div class="time-slot solid-line"></div>
+                    <div class="time-slot dotted-line"></div>
+                    <div class="time-slot solid-line"></div>
+                </div>
+
+                <!-- Thursday Column -->
+                <div class="day-column">
+                    <div class="time-slot solid-line"></div>
+                    <div class="time-slot dotted-line"></div>
+                    <div class="time-slot solid-line"></div>
+                    <div class="time-slot dotted-line"></div>
+                    <div class="time-slot solid-line"></div>
+                    <div class="time-slot dotted-line"></div>
+                    <div class="time-slot solid-line"></div>
+                    <div class="time-slot dotted-line"></div>
+                    <div class="time-slot solid-line"></div>
+                    <div class="time-slot dotted-line"></div>
+                    <div class="time-slot solid-line"></div>
+                    <div class="time-slot dotted-line"></div>
+                    <div class="time-slot solid-line"></div>
+                    <div class="time-slot dotted-line"></div>
+                    <div class="time-slot solid-line"></div>
+                    <div class="time-slot dotted-line"></div>
+                    <div class="time-slot solid-line"></div>
+                    <div class="time-slot dotted-line"></div>
+                    <div class="time-slot solid-line"></div>
+                    <div class="time-slot dotted-line"></div>
+                    <div class="time-slot solid-line"></div>
+                </div>
+
+                <!-- Friday Column -->
+                <div class="day-column">
+                    <div class="time-slot solid-line"></div>
+                    <div class="time-slot dotted-line"></div>
+                    <div class="time-slot solid-line"></div>
+                    <div class="time-slot dotted-line"></div>
+                    <div class="time-slot solid-line"></div>
+                    <div class="time-slot dotted-line"></div>
+                    <div class="time-slot solid-line"></div>
+                    <div class="time-slot dotted-line"></div>
+                    <div class="time-slot solid-line"></div>
+                    <div class="time-slot dotted-line"></div>
+                    <div class="time-slot solid-line"></div>
+                    <div class="time-slot dotted-line"></div>
+                    <div class="time-slot solid-line"></div>
+                    <div class="time-slot dotted-line"></div>
+                    <div class="time-slot solid-line"></div>
+                    <div class="time-slot dotted-line"></div>
+                    <div class="time-slot solid-line"></div>
+                    <div class="time-slot dotted-line"></div>
+                    <div class="time-slot solid-line"></div>
+                    <div class="time-slot dotted-line"></div>
+                    <div class="time-slot solid-line"></div>
+                </div>
+
+                <!-- Saturday Column -->
+                <div class="day-column">
+                    <div class="time-slot solid-line"></div>
+                    <div class="time-slot dotted-line"></div>
+                    <div class="time-slot solid-line"></div>
+                    <div class="time-slot dotted-line"></div>
+                    <div class="time-slot solid-line"></div>
+                    <div class="time-slot dotted-line"></div>
+                    <div class="time-slot solid-line"></div>
+                    <div class="time-slot dotted-line"></div>
+                    <div class="time-slot solid-line"></div>
+                    <div class="time-slot dotted-line"></div>
+                    <div class="time-slot solid-line"></div>
+                    <div class="time-slot dotted-line"></div>
+                    <div class="time-slot solid-line"></div>
+                    <div class="time-slot dotted-line"></div>
+                    <div class="time-slot solid-line"></div>
+                    <div class="time-slot dotted-line"></div>
+                    <div class="time-slot solid-line"></div>
+                    <div class="time-slot dotted-line"></div>
+                    <div class="time-slot solid-line"></div>
+                    <div class="time-slot dotted-line"></div>
+                    <div class="time-slot solid-line"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
