@@ -41,3 +41,52 @@ function updateCalendar() {
 
 // Update calendar when page loads
 updateCalendar();
+
+// Meeting block injection for demo purposes
+;(function populateMeetingBlocks(){
+    // lengths in minutes and corresponding heights (px)
+    const lengths = [15, 30, 60, 120]
+    const heightMap = {15: 20, 30: 40, 60: 80, 120: 160}
+
+    // weekday columns: Monday..Friday are the 2nd..6th .day-column in the DOM
+    const dayColumns = Array.from(document.querySelectorAll('.calendar-grid .day-column'))
+
+    // choose one of the five workdays to be empty (index 1..5 -> monday..friday)
+    const workdayIndexes = [1,2,3,4,5]
+    const emptyIndex = workdayIndexes[Math.floor(Math.random() * workdayIndexes.length)]
+
+    workdayIndexes.forEach((colIdx)=>{
+        if (colIdx === emptyIndex) return // leave empty
+
+        const column = dayColumns[colIdx]
+        if (!column) return
+
+        // pick random length and variant
+        const length = lengths[Math.floor(Math.random() * lengths.length)]
+        const variant = Math.random() < 0.5 ? 'accepted' : 'tentative'
+
+        // create meeting block element
+        const block = document.createElement('div')
+        block.className = `meeting-block ${variant}`
+        block.style.height = heightMap[length] + 'px'
+
+        const title = document.createElement('div')
+        title.className = 'meeting-title'
+        title.textContent = variant === 'accepted' ? 'Meeting' : 'Tentative'
+
+        const len = document.createElement('div')
+        len.className = 'meeting-length'
+        len.textContent = `${length}m`
+
+        block.appendChild(title)
+        block.appendChild(len)
+
+        // choose a random vertical position within the column (avoid overflow)
+        const columnHeight = column.clientHeight
+        const maxTop = Math.max(0, columnHeight - heightMap[length] - 8)
+        const top = Math.floor(Math.random() * maxTop)
+        block.style.top = top + 'px'
+
+        column.appendChild(block)
+    })
+})()
