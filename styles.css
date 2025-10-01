@@ -5,6 +5,14 @@
     box-sizing: border-box;
 }
 
+:root{
+    /* tentative (lighter), accepted (darker) for better visual contrast */
+    --meeting-bg: #eaf7ee; /* lighter tentative background */
+    --meeting-border: rgba(0,0,0,0.06);
+    --meeting-accent: #277035; /* darker accessible accent */
+    --meeting-accepted-bg: #b7e3b8; /* darker accepted background */
+}
+
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background-color: #f5f5f5;
@@ -177,7 +185,8 @@ body {
     right: 6px;
     box-sizing: border-box;
     border-radius: 6px;
-    padding: 6px 8px;
+    /* leave room for the left accent pseudo-element */
+    padding: 6px 8px 6px 14px;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -185,32 +194,76 @@ body {
     font-size: 13px;
     font-weight: 600;
     color: #323130;
-    border: 1px solid rgba(0,0,0,0.06);
+    /* unified background and border for all meeting blocks */
+    background: var(--meeting-bg, #e6f4ea);
+    border: 1px solid var(--meeting-border, rgba(0,0,0,0.06));
     box-shadow: 0 1px 2px rgba(16,24,40,0.05);
     overflow: hidden;
 }
 
-.meeting-block.accepted{
-    background: var(--accepted-bg, #e6f4ea);
-    border-color: var(--accepted-border, #92c47b);
+/* left accent implemented via pseudo-element so it doesn't interfere with outer border */
+.meeting-block::before{
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 6px;
+    border-top-left-radius: 6px;
+    border-bottom-left-radius: 6px;
+    background: var(--meeting-accent, #2f8740);
+    box-sizing: border-box; /* include border in width */
+    border-right: 1px solid var(--meeting-accent, #277035); /* separator matching accent color */
+    z-index: 1;
+    pointer-events: none;
 }
+
+/* ensure content sits above the accent */
+.meeting-block > *{
+    position: relative;
+    z-index: 2;
+}
+
+.meeting-block.accepted{
+    /* accepted blocks use a slightly darker background */
+    background: var(--meeting-accepted-bg, #cfe6d4);
+    border-color: var(--meeting-border, rgba(0,0,0,0.06));
+}
+
+/* accents are unified to --meeting-accent */
 
 .meeting-block.tentative{
-    background: var(--tentative-bg, #fff9e6);
-    border-color: var(--tentative-border, #f0b429);
-    opacity: 0.98;
+    /* tentative blocks use the base meeting background (lighter) */
+    background: var(--meeting-bg, #e6f4ea);
+        border: 1px dashed var(--meeting-accent, #277035);
+        border-left: none; /* remove left dash to keep accent stripe clean */
+    opacity: 1;
 }
 
-.meeting-block .meeting-length{
-    font-size: 12px;
-    font-weight: 500;
-    color: rgba(0,0,0,0.55);
-    margin-left: auto;
+.meeting-block.tentative::before{
+    /* tentative left accent uses a striped treatment where the gap color matches the tentative background */
+    /* thinner stripes: 2px stripe + 2px gap */
+    background-image: repeating-linear-gradient(
+        45deg,
+        var(--meeting-accent, #277035) 0 2px,
+        var(--meeting-bg, #eaf7ee) 2px 4px
+    );
+    /* fallback solid color if gradients aren't supported: use the tentative background so it blends */
+    background-color: var(--meeting-bg, #eaf7ee);
+    /* outline the accent stripe on left/top/bottom to separate it from the block */
+    border-left: 1px solid var(--meeting-accent, #277035);
+    border-top: 1px solid var(--meeting-accent, #277035);
+    border-bottom: 1px solid var(--meeting-accent, #277035);
 }
+
+/* meeting-length rule removed: minute label is no longer displayed */
 
 /* Paddle for breakout-style control */
 .paddle{
     position: absolute;
+    bottom: 8px;
+    left: 50%;
+    transform: translateX(-50%);
     width: 120px;
     height: 12px;
     /* Prefer Fluent tokens when available, otherwise fall back to the previous gradient */

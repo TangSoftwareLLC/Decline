@@ -45,7 +45,7 @@ updateCalendar();
 // Meeting block injection for demo purposes
 ;(function populateMeetingBlocks(){
     // lengths in minutes and corresponding heights (px)
-    // only use 30, 60, and 90 minute meeting lengths
+    // use 30, 60, and 90 minute meeting lengths
     const lengths = [30, 60, 90]
     const heightMap = {30: 40, 60: 80, 90: 120}
 
@@ -75,12 +75,7 @@ updateCalendar();
         title.className = 'meeting-title'
         title.textContent = variant === 'accepted' ? 'Meeting' : 'Tentative'
 
-        const len = document.createElement('div')
-        len.className = 'meeting-length'
-        len.textContent = `${length}m`
-
-        block.appendChild(title)
-        block.appendChild(len)
+    block.appendChild(title)
 
         // choose a random vertical position within the column (avoid overflow)
         const columnHeight = column.clientHeight
@@ -126,7 +121,6 @@ updateCalendar();
     function startDrag(e){
         dragging = true
         document.body.style.userSelect = 'none'
-        // capture pointer (if supported) so we keep receiving events
         if (e.target && e.target.setPointerCapture) {
             try { e.target.setPointerCapture(e.pointerId) } catch (err) {}
         }

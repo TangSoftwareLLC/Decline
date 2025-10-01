@@ -5,6 +5,8 @@
   --accepted-border: #92c47b;
   --tentative-bg: #fff9e6;
   --tentative-border: #f0b429;
+  --meeting-bg: #e6f4ea;
+  --meeting-border: rgba(0,0,0,0.06);
   --block-radius: 6px;
 }
 

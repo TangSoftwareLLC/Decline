@@ -24,7 +24,6 @@ export default function MeetingBlock({ variant = 'accepted', length, title }: Pr
     <div className={className} style={{height}} aria-label={`meeting ${title || ''}`}>
       <div className="meeting-content">
         <div className="meeting-title">{title || (variant === 'accepted' ? 'Accepted' : 'Tentative')}</div>
-        <div className="meeting-length">{length} min</div>
       </div>
     </div>
   )

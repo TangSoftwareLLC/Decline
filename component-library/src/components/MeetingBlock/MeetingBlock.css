@@ -2,26 +2,65 @@
   min-width: 140px;
   box-sizing: border-box;
   border-radius: var(--block-radius);
-  padding: 8px 10px;
+  /* leave room for the left accent pseudo-element */
+  padding: 8px 10px 8px 16px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   box-shadow: 0 1px 2px rgba(16,24,40,0.05);
-  border: 1px solid rgba(0,0,0,0.06);
+  border: 1px solid var(--meeting-border, rgba(0,0,0,0.06));
+  background: var(--meeting-bg, #eaf7ee);
   color: var(--neutral-foreground);
 }
 
-.meeting-block.accepted{
-  /* Prefer Fluent tokens when available, otherwise fall back to local tokens */
-  background: var(--fui-surface-1, var(--accepted-bg));
-  border-color: var(--fui-brand-foreground-1, var(--accepted-border));
+/* pseudo-element left accent */
+.meeting-block::before{
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 6px;
+  border-top-left-radius: var(--block-radius);
+  border-bottom-left-radius: var(--block-radius);
+  background: var(--meeting-accent, #277035);
+  box-sizing: border-box;
+  border-right: 1px solid var(--meeting-accent, #277035);
+  z-index: 1;
+  pointer-events: none;
 }
 
-.meeting-block.tentative{
-  background: var(--fui-surface-2, var(--tentative-bg));
-  border-color: var(--fui-alert-foreground-1, var(--tentative-border));
-  opacity: 0.95;
+.meeting-block > *{ position: relative; z-index: 2 }
+
+.meeting-block.accepted{
+  background: var(--meeting-accepted-bg, #b7e3b8);
+  border-color: var(--meeting-border, rgba(0,0,0,0.06));
 }
+
+/* accents are unified to --meeting-accent */
+
+.meeting-block.tentative{
+  background: var(--meeting-bg, #eaf7ee);
+  border: 1px dashed var(--meeting-accent, #277035);
+  border-left: none; /* keep the left accent stripe unobstructed */
+  opacity: 1;
+}
+
+.meeting-block.tentative::before{
+    /* tentative left accent uses a striped treatment for visual distinction */
+  /* thinner stripes: 2px stripe + 2px gap */
+  background-image: repeating-linear-gradient(
+    45deg,
+    var(--meeting-accent, #277035) 0 2px,
+    var(--meeting-bg, #eaf7ee) 2px 4px
+  );
+  background-color: var(--meeting-bg, #eaf7ee);
+  border-left: 1px solid var(--meeting-accent, #277035);
+  border-top: 1px solid var(--meeting-accent, #277035);
+  border-bottom: 1px solid var(--meeting-accent, #277035);
+}
+
+/* accents are unified to --meeting-accent */
 
 .meeting-content{
   display: flex;
@@ -38,8 +77,4 @@
   text-overflow: ellipsis;
 }
 
-.meeting-length{
-  margin-left: auto;
-  font-size: 12px;
-  color: rgba(0,0,0,0.5);
-}
+/* meeting-length removed: minute label is no longer displayed */
