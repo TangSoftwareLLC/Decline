@@ -45,8 +45,9 @@ updateCalendar();
 // Meeting block injection for demo purposes
 ;(function populateMeetingBlocks(){
     // lengths in minutes and corresponding heights (px)
-    const lengths = [15, 30, 60, 120]
-    const heightMap = {15: 20, 30: 40, 60: 80, 120: 160}
+    // only use 30, 60, and 90 minute meeting lengths
+    const lengths = [30, 60, 90]
+    const heightMap = {30: 40, 60: 80, 90: 120}
 
     // weekday columns: Monday..Friday are the 2nd..6th .day-column in the DOM
     const dayColumns = Array.from(document.querySelectorAll('.calendar-grid .day-column'))
