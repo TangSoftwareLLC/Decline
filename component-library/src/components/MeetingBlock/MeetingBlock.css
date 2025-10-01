@@ -1,0 +1,45 @@
+.meeting-block{
+  min-width: 140px;
+  box-sizing: border-box;
+  border-radius: var(--block-radius);
+  padding: 8px 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 1px 2px rgba(16,24,40,0.05);
+  border: 1px solid rgba(0,0,0,0.06);
+  color: var(--neutral-foreground);
+}
+
+.meeting-block.accepted{
+  /* Prefer Fluent tokens when available, otherwise fall back to local tokens */
+  background: var(--fui-surface-1, var(--accepted-bg));
+  border-color: var(--fui-brand-foreground-1, var(--accepted-border));
+}
+
+.meeting-block.tentative{
+  background: var(--fui-surface-2, var(--tentative-bg));
+  border-color: var(--fui-alert-foreground-1, var(--tentative-border));
+  opacity: 0.95;
+}
+
+.meeting-content{
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+}
+
+.meeting-title{
+  font-weight: 600;
+  font-size: 13px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.meeting-length{
+  margin-left: auto;
+  font-size: 12px;
+  color: rgba(0,0,0,0.5);
+}

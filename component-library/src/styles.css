@@ -1,0 +1,27 @@
+:root{
+  --neutral-foreground: #323130;
+  --neutral-background: #ffffff;
+  --accepted-bg: #e6f4ea;
+  --accepted-border: #92c47b;
+  --tentative-bg: #fff9e6;
+  --tentative-border: #f0b429;
+  --block-radius: 6px;
+}
+
+body{
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: #f5f5f5;
+  margin: 0;
+  padding: 24px;
+}
+
+.container{
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.examples{
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
