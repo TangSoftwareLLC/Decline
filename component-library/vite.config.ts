@@ -5,7 +5,10 @@ export default defineConfig(async () => {
   const plugins = [] as any[]
   try {
     const mod = await import('@vitejs/plugin-react')
-    const plugin = mod && (mod.default ? mod.default() : mod())
+    // the imported module may export the plugin factory as default (the usual case)
+    // or as the module itself. Normalize to a factory and call it if necessary.
+    const factory = (mod as any).default ?? (mod as any)
+    const plugin = typeof factory === 'function' ? factory() : factory
     if (plugin) plugins.push(plugin)
   } catch (e) {
     // plugin not installed — warn and continue without it
