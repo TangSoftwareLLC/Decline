@@ -105,11 +105,10 @@ export default function MeetingBlock({
   // Generate random data if useRandomData is true
   const randomData = useRandomData ? generateRandomMeetingData() : null
   
-  // Use provided props, or random data if useRandomData is true, or fallback for title
-  const displayTitle = title || (randomData?.title) || (variant === 'accepted' ? 'Accepted' : 'Tentative')
-  // Use prop if provided, otherwise use random data if useRandomData is true
-  const displayRoomInfo = roomInfo !== undefined ? roomInfo : (useRandomData ? randomData?.roomInfo : undefined)
-  const displayOrganizerInfo = organizerInfo !== undefined ? organizerInfo : (useRandomData ? randomData?.organizerInfo : undefined)
+  // When useRandomData is true, prioritize random data over provided props
+  const displayTitle = useRandomData ? randomData?.title : (title || (variant === 'accepted' ? 'Accepted' : 'Tentative'))
+  const displayRoomInfo = useRandomData ? randomData?.roomInfo : roomInfo
+  const displayOrganizerInfo = useRandomData ? randomData?.organizerInfo : organizerInfo
 
   return (
     <div className={className} style={{height}} aria-label={`meeting ${displayTitle}`}>
