@@ -42,12 +42,15 @@ function updateCalendar() {
 // Update calendar when page loads
 updateCalendar();
 
-// Meeting block injection for demo purposes
-;(function populateMeetingBlocks(){
-    // lengths in minutes and corresponding heights (px)
-    // use 30, 60, and 90 minute meeting lengths
-    const lengths = [30, 60, 90]
-    const heightMap = {30: 40, 60: 80, 90: 120}
+// Meeting block injection using React MeetingBlock component
+import React from 'react'
+import { createRoot } from 'react-dom/client'
+import { MeetingBlock, HEIGHT_MAP, MEETING_LENGTHS } from './src/components/index'
+
+;(async function populateMeetingBlocks(){
+    // Use the meeting lengths and height map from the MeetingBlock component
+    const lengths = MEETING_LENGTHS;
+    const heightMap = HEIGHT_MAP;
 
     // weekday columns: Monday..Friday are the 2nd..6th .day-column in the DOM
     const dayColumns = Array.from(document.querySelectorAll('.calendar-grid .day-column'))
@@ -66,24 +69,26 @@ updateCalendar();
         const length = lengths[Math.floor(Math.random() * lengths.length)]
         const variant = Math.random() < 0.5 ? 'accepted' : 'tentative'
 
-        // create meeting block element
-        const block = document.createElement('div')
-        block.className = `meeting-block ${variant}`
-        block.style.height = heightMap[length] + 'px'
-
-        const title = document.createElement('div')
-        title.className = 'meeting-title'
-        title.textContent = variant === 'accepted' ? 'Meeting' : 'Tentative'
-
-    block.appendChild(title)
-
-        // choose a random vertical position within the column (avoid overflow)
+        // Create container for React component
+        const container = document.createElement('div')
+        container.style.position = 'absolute'
+        
+        // Calculate position
         const columnHeight = column.clientHeight
         const maxTop = Math.max(0, columnHeight - heightMap[length] - 8)
         const top = Math.floor(Math.random() * maxTop)
-        block.style.top = top + 'px'
+        container.style.top = top + 'px'
 
-        column.appendChild(block)
+        // Render React MeetingBlock component (random values will be generated if props not provided)
+        const root = createRoot(container)
+        root.render(
+            React.createElement(MeetingBlock, {
+                variant: variant,
+                length: length
+            })
+        )
+
+        column.appendChild(container)
     })
 })()
 
