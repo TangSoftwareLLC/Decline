@@ -9,18 +9,18 @@ export default function App(){
 
       <h2>Accepted</h2>
       <div className="examples">
-        <MeetingBlock variant="accepted" length={15} title="Quick sync" />
-        <MeetingBlock variant="accepted" length={30} title="Standup" />
-        <MeetingBlock variant="accepted" length={60} title="Planning" />
-        <MeetingBlock variant="accepted" length={120} title="Workshop" />
+        <MeetingBlock variant="accepted" length={15} title="Quick sync" roomInfo="Room 1" organizerInfo="John Doe" useRandomData={true} />
+        <MeetingBlock variant="accepted" length={30} title="Standup" roomInfo="Room 2" organizerInfo="Jane Doe" useRandomData={true} />
+        <MeetingBlock variant="accepted" length={60} title="Planning" roomInfo="Room 3" organizerInfo="Jim Doe" useRandomData={true} />
+        <MeetingBlock variant="accepted" length={120} title="Workshop" roomInfo="Room 4" organizerInfo="Jill Doe" useRandomData={true} />
       </div>
 
       <h2 style={{marginTop:20}}>Tentative</h2>
       <div className="examples">
-        <MeetingBlock variant="tentative" length={15} title="Maybe: sync" />
-        <MeetingBlock variant="tentative" length={30} title="Maybe: demo" />
-        <MeetingBlock variant="tentative" length={60} title="Maybe: review" />
-        <MeetingBlock variant="tentative" length={120} title="Maybe: offsite" />
+        <MeetingBlock variant="tentative" length={15} title="Maybe: sync" roomInfo="Room 5" organizerInfo="John Doe" useRandomData={true} />
+        <MeetingBlock variant="tentative" length={30} title="Maybe: demo" roomInfo="Room 6" organizerInfo="Jane Doe" useRandomData={true} />
+        <MeetingBlock variant="tentative" length={60} title="Maybe: review" roomInfo="Room 7" organizerInfo="Jim Doe" useRandomData={true} />
+        <MeetingBlock variant="tentative" length={120} title="Maybe: offsite" roomInfo="Room 8" organizerInfo="Jill Doe" useRandomData={true} />
       </div>
     </div>
   )
